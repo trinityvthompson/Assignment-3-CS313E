@@ -5,7 +5,7 @@ class Employee:
     def __init__(self, **kwargs):
         self.name = kwargs.get("name", "None")
         self.identifier = kwargs.get("identifier", "None")
-        self.salary = kwargs.get("salary", "None") # replace not provided later
+        self.salary = kwargs.get("salary", "None") 
 
     def __str__(self):
         return (f"Employee\n{self.name}, {self.identifier}, {self.salary}")
@@ -14,7 +14,7 @@ class Employee:
 class PermanentEmployee(Employee):
 
     def __init__(self, **kwargs):
-        super().__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.benefits = kwargs.get("benefits", [])
 
     def cal_salary(self):
@@ -31,7 +31,7 @@ class PermanentEmployee(Employee):
 class Manager(Employee):
 
     def __init__(self, **kwargs):
-        super().__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.bonus = kwargs.get("bonus", 0)
     
     def cal_salary(self):
@@ -43,7 +43,7 @@ class Manager(Employee):
 
 class TemporaryEmployee(Employee):
     def __init__(self, **kwargs):
-        super().__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.hours = kwargs.get("hours", 0)
     
     def cal_salary(self):
@@ -55,10 +55,12 @@ class TemporaryEmployee(Employee):
 
 class Consultant(TemporaryEmployee):
     def __init__(self, **kwargs):
-        super().__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.travel = kwargs.get("travel", 0)
 
     def cal_salary(self):
+        #new_salary = super().cal_salary() + (1000 * self.travel)
+        #return (f"{new_salary:.1f}")
         return super().cal_salary() + (1000 * self.travel)
 
     def __str__(self):
@@ -67,10 +69,11 @@ class Consultant(TemporaryEmployee):
 
 class ConsultantManager(Consultant, Manager):
     def __init__(self,  **kwargs):
-        super().__init__(self, **kwargs)
+        Consultant.__init__(self, **kwargs)
+        Manager.__init__(self, **kwargs)
 
     def cal_salary(self):
-        return (self.salary * self.hours) + (self.travel * 1000) + self.bonus
+        return (Consultant.cal_salary(self)) + self.bonus
 
     def __str__(self):
         return (f"ConsultantManager\n{self.name}, {self.identifier}, {self.salary}, {self.hours}, {self.bonus}, {self.travel}")
