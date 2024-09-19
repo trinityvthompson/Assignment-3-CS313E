@@ -8,7 +8,7 @@ class Employee:
         self.salary = kwargs.get("salary", "None") 
 
     def __str__(self):
-        return (f"Employee\n{self.name}, {self.identifier}, {self.salary}")
+        return f"Employee\n{self.name}, {self.identifier}, {self.salary}"
 
 
 class PermanentEmployee(Employee):
@@ -26,7 +26,7 @@ class PermanentEmployee(Employee):
             return self.salary * 0.8
 
     def __str__(self):
-        return (f"PermanentEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.benefits}")
+        return f"PermanentEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.benefits}"
 
 class Manager(Employee):
 
@@ -38,7 +38,7 @@ class Manager(Employee):
         return self.salary + self.bonus
 
     def __str__(self):
-        return (f"Manager\n{self.name}, {self.identifier}, {self.salary}, {self.bonus}")
+        return f"Manager\n{self.name}, {self.identifier}, {self.salary}, {self.bonus}"
 
 
 class TemporaryEmployee(Employee):
@@ -50,7 +50,7 @@ class TemporaryEmployee(Employee):
         return self.salary * self.hours
 
     def __str__(self):
-        return (f"TemporaryEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.hours}")   
+        return f"TemporaryEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.hours}"  
 
 
 class Consultant(TemporaryEmployee):
@@ -64,7 +64,7 @@ class Consultant(TemporaryEmployee):
         return super().cal_salary() + (1000 * self.travel)
 
     def __str__(self):
-        return (f"Consultant\n{self.name}, {self.identifier}, {self.salary}, {self.hours}, {self.travel}")
+        return f"Consultant\n{self.name}, {self.identifier}, {self.salary}, {self.hours}, {self.travel}"
 
 
 class ConsultantManager(Consultant, Manager):
@@ -76,7 +76,7 @@ class ConsultantManager(Consultant, Manager):
         return (Consultant.cal_salary(self)) + self.bonus
 
     def __str__(self):
-        return (f"ConsultantManager\n{self.name}, {self.identifier}, {self.salary}, {self.hours}, {self.bonus}, {self.travel}")
+        return f"ConsultantManager\n{self.name}, {self.identifier}, {self.salary}, {self.hours}, {self.bonus}, {self.travel}"
 
 
 ###### DO NOT CHANGE THE MAIN FUNCTION ########
