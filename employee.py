@@ -1,4 +1,7 @@
-
+"""
+This module defines a set of classes for managing different types of
+employees within a company.
+"""
 
 class Employee:
     """Represents a general employee."""
