@@ -30,9 +30,9 @@ class PermanentEmployee(Employee):
         """Calculate salary based on benefits provided"""
         if "health_insurance" in self.benefits and "retirement" in self.benefits:
             return self.salary * 0.7
-        elif "health_insurance" in self.benefits:
+        if "health_insurance" in self.benefits:
             return self.salary * 0.9
-        elif "retirement" in self.benefits:
+        if "retirement" in self.benefits:
             return self.salary * 0.8
 
     def __str__(self):
