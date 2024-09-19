@@ -5,7 +5,7 @@ class Employee:
     def __init__(self, **kwargs):
         self.name = kwargs.get("name", "None")
         self.identifier = kwargs.get("identifier", "None")
-        self.salary = kwargs.get("salary", "None") 
+        self.salary = kwargs.get("salary", "None")
 
     def __str__(self):
         return f"Employee\n{self.name}, {self.identifier}, {self.salary}"
@@ -50,7 +50,7 @@ class TemporaryEmployee(Employee):
         return self.salary * self.hours
 
     def __str__(self):
-        return f"TemporaryEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.hours}"  
+        return f"TemporaryEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.hours}" 
 
 
 class Consultant(TemporaryEmployee):
@@ -59,8 +59,6 @@ class Consultant(TemporaryEmployee):
         self.travel = kwargs.get("travel", 0)
 
     def cal_salary(self):
-        #new_salary = super().cal_salary() + (1000 * self.travel)
-        #return (f"{new_salary:.1f}")
         return super().cal_salary() + (1000 * self.travel)
 
     def __str__(self):
@@ -76,8 +74,8 @@ class ConsultantManager(Consultant, Manager):
         return (Consultant.cal_salary(self)) + self.bonus
 
     def __str__(self):
-        return f"ConsultantManager\n{self.name}, {self.identifier}, {self.salary}, {self.hours}, {self.bonus}, {self.travel}"
-
+        return f"ConsultantManager\n{self.name}, {self.identifier}, \
+                {self.salary}, {self.hours}, {self.bonus}, {self.travel}"
 
 ###### DO NOT CHANGE THE MAIN FUNCTION ########
 
