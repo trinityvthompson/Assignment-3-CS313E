@@ -24,8 +24,6 @@ class PermanentEmployee(Employee):
             return self.salary * 0.9
         elif "retirement" in self.benefits:
             return self.salary * 0.8
-        else:
-            pass
 
     def __str__(self):
         return f"PermanentEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.benefits}"
@@ -52,7 +50,7 @@ class TemporaryEmployee(Employee):
         return self.salary * self.hours
 
     def __str__(self):
-        return f"TemporaryEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.hours}" 
+        return f"TemporaryEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.hours}"
 
 
 class Consultant(TemporaryEmployee):
