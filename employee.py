@@ -1,23 +1,30 @@
 
 
 class Employee:
-
+    """Represents a general employee."""
     def __init__(self, **kwargs):
+        """
+        Initializes an Employee object with given keyword arguments: 
+        name, identifier, salary
+        """
         self.name = kwargs.get("name", "None")
         self.identifier = kwargs.get("identifier", "None")
         self.salary = kwargs.get("salary", "None")
 
     def __str__(self):
+        """Returns a string representation of the Employee object."""
         return f"Employee\n{self.name}, {self.identifier}, {self.salary}"
 
 
 class PermanentEmployee(Employee):
-
+    """Represents a Permanent Employee with benefits they can select from."""
     def __init__(self, **kwargs):
+        """Initializes a permanent employee object."""
         super().__init__(**kwargs)
         self.benefits = kwargs.get("benefits", [])
 
     def cal_salary(self):
+        """Calculate salary based on benefits provided"""
         if "health_insurance" in self.benefits and "retirement" in self.benefits:
             return self.salary * 0.7
         elif "health_insurance" in self.benefits:
@@ -26,55 +33,71 @@ class PermanentEmployee(Employee):
             return self.salary * 0.8
 
     def __str__(self):
+        """Returns string representation of Permanent Employee object."""
         return f"PermanentEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.benefits}"
 
 class Manager(Employee):
-
+    """Represents a manager, a special type of employee, with a bonus in addition to main salary."""
     def __init__(self, **kwargs):
+        """Initializes a manager object."""
         super().__init__(**kwargs)
         self.bonus = kwargs.get("bonus", 0)
 
     def cal_salary(self):
+        """Calculates total salary including bonus"""
         return self.salary + self.bonus
 
     def __str__(self):
+        """Returns string representation of Manager object."""
         return f"Manager\n{self.name}, {self.identifier}, {self.salary}, {self.bonus}"
 
 
 class TemporaryEmployee(Employee):
+    """Represents a temporary employee, an employee that gets paid per hour."""
     def __init__(self, **kwargs):
+        """Initializes a temporary employee object."""
         super().__init__(**kwargs)
         self.hours = kwargs.get("hours", 0)
 
     def cal_salary(self):
+        """Calculates total salary based on hours worked and hourly wage."""
         return self.salary * self.hours
 
     def __str__(self):
+        """Returns string representation of Temporary Employee object."""
         return f"TemporaryEmployee\n{self.name}, {self.identifier}, {self.salary}, {self.hours}"
 
 
 class Consultant(TemporaryEmployee):
+    """Represents a consultant, a temporary employee who also travels."""
     def __init__(self, **kwargs):
+        """Initializes a consultant object."""
         super().__init__(**kwargs)
         self.travel = kwargs.get("travel", 0)
 
     def cal_salary(self):
+        """Calculates salary as temporary employee plus travel benefits."""
         return super().cal_salary() + (1000 * self.travel)
 
     def __str__(self):
+        """Returns string representation of Consultant object."""
         return f"Consultant\n{self.name}, {self.identifier}, \
             {self.salary}, {self.hours}, {self.travel}"
 
 
 class ConsultantManager(Consultant, Manager):
+    """Represents a consultant who is also a manager."""
     def __init__(self,  **kwargs):
+        """Initializes a consultant manager object."""
         Consultant.__init__(self, **kwargs)
         Manager.__init__(self, **kwargs)
 
     def cal_salary(self):
+        """Calculates salary including bonus, hours worked, and travel pay."""
         return (Consultant.cal_salary(self)) + self.bonus
 
     def __str__(self):
+        """Returns the string representation of Consultant Manager object."""
         return f"ConsultantManager\n{self.name}, {self.identifier}, \
                 {self.salary}, {self.hours}, {self.bonus}, {self.travel}"
 
