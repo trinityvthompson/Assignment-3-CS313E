@@ -34,6 +34,8 @@ class PermanentEmployee(Employee):
             return self.salary * 0.9
         if "retirement" in self.benefits:
             return self.salary * 0.8
+        #Return base salary if no benefits apply (none of the conditions are met)
+        return self.salary
 
     def __str__(self):
         """Returns string representation of Permanent Employee object."""
